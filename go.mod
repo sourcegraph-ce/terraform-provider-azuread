@@ -18,7 +18,7 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.7.0
 	github.com/hashicorp/yamux v0.0.0-20210316155119-a95892c5f864 // indirect
 	github.com/klauspost/compress v1.12.2 // indirect
-	github.com/manicminer/hamilton v0.31.2-0.20211004130700-8fc095d14c2c
+	github.com/manicminer/hamilton v0.31.2-0.20211004140323-3895d3b70be3
 	github.com/mitchellh/go-testing-interface v1.14.1 // indirect
 	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.4.1 // indirect
