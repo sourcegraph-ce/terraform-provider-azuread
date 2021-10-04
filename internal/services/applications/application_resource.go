@@ -918,6 +918,11 @@ func applicationResourceCreate(ctx context.Context, d *schema.ResourceData, meta
 	if callerObject == nil {
 		return tf.ErrorDiagF(errors.New("returned callerObject was nil"), "Could not retrieve calling principal object %q", callerId)
 	}
+
+	// TODO: remove this workaround for https://github.com/hashicorp/terraform-provider-azuread/issues/588
+	callerObject.ODataId = (*odata.Id)(utils.String(fmt.Sprintf("%s/v1.0/%s/directoryObjects/%s",
+		client.BaseClient.Endpoint, client.BaseClient.TenantId, callerId)))
+
 	ownersFirst20 := msgraph.Owners{*callerObject}
 	var ownersExtra msgraph.Owners
 
@@ -939,9 +944,14 @@ func applicationResourceCreate(ctx context.Context, d *schema.ResourceData, meta
 			if ownerObject == nil {
 				return tf.ErrorDiagF(errors.New("ownerObject was nil"), "Could not retrieve owner principal object %q", id)
 			}
-			if ownerObject.ODataId == nil {
-				return tf.ErrorDiagF(errors.New("ODataId was nil"), "Could not retrieve owner principal object %q", id)
-			}
+
+			// TODO: remove this workaround for https://github.com/hashicorp/terraform-provider-azuread/issues/588
+			//if ownerObject.ODataId == nil {
+			//	return tf.ErrorDiagF(errors.New("ODataId was nil"), "Could not retrieve owner principal object %q", id)
+			//}
+			ownerObject.ODataId = (*odata.Id)(utils.String(fmt.Sprintf("%s/v1.0/%s/directoryObjects/%s",
+				client.BaseClient.Endpoint, client.BaseClient.TenantId, id)))
+
 			if ownerCount < 19 {
 				ownersFirst20 = append(ownersFirst20, *ownerObject)
 			} else {

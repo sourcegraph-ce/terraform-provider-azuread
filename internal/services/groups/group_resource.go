@@ -418,9 +418,14 @@ func groupResourceCreate(ctx context.Context, d *schema.ResourceData, meta inter
 		if ownerObject.ID == nil {
 			return nil, errors.New("ownerObject ID was nil")
 		}
-		if ownerObject.ODataId == nil {
-			return nil, errors.New("ODataId was nil")
-		}
+
+		// TODO: remove this workaround for https://github.com/hashicorp/terraform-provider-azuread/issues/588
+		//if ownerObject.ODataId == nil {
+		//	return nil, errors.New("ODataId was nil")
+		//}
+		ownerObject.ODataId = (*odata.Id)(utils.String(fmt.Sprintf("%s/v1.0/%s/directoryObjects/%s",
+			client.BaseClient.Endpoint, client.BaseClient.TenantId, id)))
+
 		if ownerObject.ODataType == nil {
 			return nil, errors.New("ownerObject ODataType was nil")
 		}
@@ -442,9 +447,6 @@ func groupResourceCreate(ctx context.Context, d *schema.ResourceData, meta inter
 				return tf.ErrorDiagF(err, "Could not retrieve owner principal object %q", id)
 			}
 			if strings.EqualFold(*ownerObject.ID, callerId) {
-				if ownerObject.ODataId == nil {
-					return tf.ErrorDiagF(errors.New("ODataId was nil"), "Could not retrieve owner principal object %q", id)
-				}
 				if ownerCount < 20 {
 					ownersFirst20 = append(ownersFirst20, *ownerObject)
 				} else {
@@ -516,9 +518,14 @@ func groupResourceCreate(ctx context.Context, d *schema.ResourceData, meta inter
 			if memberObject == nil {
 				return tf.ErrorDiagF(errors.New("memberObject was nil"), "Could not retrieve member principal object %q", id)
 			}
-			if memberObject.ODataId == nil {
-				return tf.ErrorDiagF(errors.New("ODataId was nil"), "Could not retrieve member principal object %q", id)
-			}
+
+			// TODO: remove this workaround for https://github.com/hashicorp/terraform-provider-azuread/issues/588
+			//if memberObject.ODataId == nil {
+			//	return tf.ErrorDiagF(errors.New("ODataId was nil"), "Could not retrieve member principal object %q", id)
+			//}
+			memberObject.ODataId = (*odata.Id)(utils.String(fmt.Sprintf("%s/v1.0/%s/directoryObjects/%s",
+				client.BaseClient.Endpoint, client.BaseClient.TenantId, id)))
+
 			members = append(members, *memberObject)
 		}
 	}
