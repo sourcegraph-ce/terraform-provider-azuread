@@ -2,7 +2,7 @@ package src
 
 import (
 	"context"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 
 	isrc "github.com/hashicorp/hc-install/internal/src"
 )

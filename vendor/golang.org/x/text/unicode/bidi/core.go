@@ -6,7 +6,7 @@ package bidi
 
 import (
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 )
 
 // This implementation is a port based on the reference implementation found at:

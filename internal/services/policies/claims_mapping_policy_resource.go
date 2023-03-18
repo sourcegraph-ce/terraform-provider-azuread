@@ -3,7 +3,7 @@ package policies
 import (
 	"context"
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
