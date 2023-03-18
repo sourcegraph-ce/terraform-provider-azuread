@@ -2,7 +2,7 @@ package hclog
 
 import (
 	"io"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"sync"
 	"sync/atomic"
 )

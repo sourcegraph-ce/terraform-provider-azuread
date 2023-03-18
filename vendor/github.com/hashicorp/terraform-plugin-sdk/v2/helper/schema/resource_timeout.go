@@ -2,7 +2,7 @@ package schema
 
 import (
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"time"
 
 	"github.com/mitchellh/copystructure"

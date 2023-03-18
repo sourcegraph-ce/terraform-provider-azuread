@@ -2,7 +2,7 @@ package plugin
 
 import (
 	"errors"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 
 	hclog "github.com/hashicorp/go-hclog"
 	"github.com/hashicorp/go-plugin"
