@@ -17,7 +17,7 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"math"
 	mathrand "math/rand"
 	"net"

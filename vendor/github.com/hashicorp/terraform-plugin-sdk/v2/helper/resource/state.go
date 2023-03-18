@@ -2,7 +2,7 @@ package resource
 
 import (
 	"context"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"time"
 )
 

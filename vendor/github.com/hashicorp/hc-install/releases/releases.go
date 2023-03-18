@@ -2,7 +2,7 @@ package releases
 
 import (
 	"io/ioutil"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"time"
 )
 

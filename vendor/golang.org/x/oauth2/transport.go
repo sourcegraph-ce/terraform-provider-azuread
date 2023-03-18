@@ -6,7 +6,7 @@ package oauth2
 
 import (
 	"errors"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"net/http"
 	"sync"
 )

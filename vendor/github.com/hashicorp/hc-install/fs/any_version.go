@@ -3,7 +3,7 @@ package fs
 import (
 	"context"
 	"fmt"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 	"path/filepath"
 
 	"github.com/hashicorp/hc-install/errors"

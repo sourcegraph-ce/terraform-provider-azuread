@@ -2,7 +2,7 @@ package utils
 
 import (
 	"encoding/base64"
-	"log"
+	log "github.com/sourcegraph-ce/logrus"
 )
 
 func Base64DecodeCertificate(clientCertificate string) (pfx []byte) {
